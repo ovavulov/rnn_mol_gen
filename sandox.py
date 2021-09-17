@@ -1,16 +1,23 @@
 import os
+import random
 
 import joblib
 import numpy as np
+import pandas as pd
+import torch
+from torch import nn
+import tqdm
+import warnings
+import yaml
 
-OUTPUT_DATA_PATH = './data/preprocessed'
+SEED = 19
+random.seed(SEED)
+np.random.seed(SEED)
+torch.random.manual_seed(SEED)
+warnings.filterwarnings('ignore')
 
-node2idx = joblib.load(os.path.join(OUTPUT_DATA_PATH, 'node2idx.pkl'))
-idx2node = joblib.load(os.path.join(OUTPUT_DATA_PATH, 'idx2node.pkl'))
-train_ohe = joblib.load(os.path.join(OUTPUT_DATA_PATH, 'train.pkl'))
-test_ohe = joblib.load(os.path.join(OUTPUT_DATA_PATH, 'test.pkl'))
-test_sc_ohe = joblib.load(os.path.join(OUTPUT_DATA_PATH, 'test_sc.pkl'))
+DATA_PATH = './data/preprocessed'
+with open('conf.yml') as f:
+    cfg = yaml.load(f.read())
 
-print(node2idx)
-print(train_ohe[0, :, :].shape)
-print(np.argmax(train_ohe[0, :, :], axis=1))
+print(cfg['data']['train_sample'])

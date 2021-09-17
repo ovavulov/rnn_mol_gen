@@ -1,3 +1,15 @@
-general:
-  batch_size: 128
+data:
+  train_sample: 0.1
+  test_sample: 0.1
+  scaffolds: No
+model:
+  device: cpu
+  batch_size: 2
   learning_rate: 0.01
+  input_size: 28
+  output_size: 64
+  cell_size: 64
+  num_layers: 1
+  dropout: 0
+  bidirectional: No
+
